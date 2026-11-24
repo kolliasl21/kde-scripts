@@ -8,12 +8,12 @@ switch_virtual_keyboard() {
 		ascii_array+=("$temp")
 	done
 
-	echo "Starting $1"
+	echo "Switching to $1"
 
 	kwriteconfig6 --file kwinrc \
 		--group Wayland \
 		--key InputMethod \
-		"/usr/share/applications/$1"
+		"$1"
 
 	busctl --user emit /kwinrc org.kde.kconfig.notify \
 		ConfigChanged "a{saay}" 1 Wayland 1 \
